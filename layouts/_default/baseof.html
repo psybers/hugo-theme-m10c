@@ -40,6 +40,11 @@
         {{ end }}
       </div>
       {{- end }}
+      {{- with .Site.Copyright }}
+      <div class="app-header-copyright">
+        {{ $.Site.Copyright | default "" | safeHTML }}
+      </div>
+      {{- end }}
     </header>
     <main class="app-container">
       {{ block "main" . }}
