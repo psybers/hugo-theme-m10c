@@ -1,24 +1,76 @@
 {{ with $.Paginator }}
 {{ if gt .TotalPages 1 }}
+{{ $adjacent_links := 3 }}
+{{ $max_links := (add (mul $adjacent_links 2) 1) }}
+{{ $lower_limit := (add $adjacent_links 1) }}
+{{ $upper_limit := (sub $.Paginator.TotalPages $adjacent_links) }}
 <ul class="pagination">
+  {{ if .HasPrev }}
+  <li class="page-item">
+    <a class="page-link" href="{{ .First.URL }}">
+      {{ partial "icon.html" (dict "ctx" $ "name" "chevrons-left") }}
+    </a>
+  </li>
+  {{ end }}
   {{ with .Prev }}
   <li class="page-item">
     <a class="page-link" href="{{ .URL }}">
-      {{ partial "icon.html" (dict "ctx" $ "name" "arrow-left") }}
+      {{ partial "icon.html" (dict "ctx" $ "name" "chevron-left") }}
     </a>
   </li>
   {{ end }}
   {{ range .Pagers }}
-  <li class="page-item{{ if eq .PageNumber $.Paginator.PageNumber }} active{{ end }}">
-    <a class="page-link" href="{{ .URL }}">
-      {{ .PageNumber }}
-    </a>
-  </li>
+    {{ $.Scratch.Set "page_number_flag" false }}
+
+    {{ if gt $.Paginator.TotalPages $max_links }}
+      {{ if le $.Paginator.PageNumber $lower_limit }}
+        {{ if le .PageNumber $max_links }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ else if ge $.Paginator.PageNumber $upper_limit }}
+        {{ if gt .PageNumber (sub $.Paginator.TotalPages $max_links) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ else }}
+        {{ if and ( ge .PageNumber (sub $.Paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $.Paginator.PageNumber $adjacent_links) ) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ $.Scratch.Set "page_number_flag" true }}
+    {{ end }}
+
+    {{ if eq .PageNumber 1 }}
+      {{ if gt $.Paginator.PageNumber (add 1 $adjacent_links) }}
+        <li class="page-item range-separator">...</li>
+      {{ end }}
+    {{ else }}
+        {{ if eq .PageNumber $.Paginator.TotalPages }}
+          {{ if lt $.Paginator.PageNumber $upper_limit }}
+            <li class="page-item range-separator">...</li>
+          {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq ($.Scratch.Get "page_number_flag") true }}
+    <li class="page-item{{ if eq .PageNumber $.Paginator.PageNumber }} active{{ end }}">
+      <a class="page-link" href="{{ .URL }}">
+        {{ .PageNumber }}
+      </a>
+    </li>
+    {{ end }}
   {{ end }}
   {{ with .Next }}
   <li class="page-item">
     <a class="page-link" href="{{ .URL }}">
-      {{ partial "icon.html" (dict "ctx" $ "name" "arrow-right") }}
+      {{ partial "icon.html" (dict "ctx" $ "name" "chevron-right") }}
+    </a>
+  </li>
+  {{ end }}
+  {{ if .HasNext }}
+  <li class="page-item">
+    <a class="page-link" href="{{ .Last.URL }}">
+      {{ partial "icon.html" (dict "ctx" $ "name" "chevrons-right") }}
     </a>
   </li>
   {{ end }}
