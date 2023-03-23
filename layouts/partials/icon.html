@@ -1,6 +1,8 @@
 {{- if isset .ctx.Site.Data.m10c.icons .name -}}
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-{{ .name }}">
-  <title>{{ .title | default .name }}</title>
+  {{ with .title }}
+  <title>{{ . }}</title>
+  {{ end }}
   {{ safeHTML (index .ctx.Site.Data.m10c.icons .name) }}
 </svg>
 {{- else -}}
