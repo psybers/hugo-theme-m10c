@@ -1,5 +1,15 @@
 const body = document.body;
 
+function swapButtons(oldbtn, newbtn) {
+    var classList = $('.btn-close-' + oldbtn).attr('class');
+    if (classList) {
+      var classArr = classList.split(/\s+/);
+      classArr = classArr.filter(x => x !== 'btn-close-' + oldbtn);
+      classArr.push('btn-close-' + newbtn)
+      $('.btn-close-' + oldbtn).attr('class', classArr.join(' '));
+    }
+}
+
 /**
  * Render theme variation (day or night).
  *
@@ -30,6 +40,7 @@ function renderThemeVariation(isDarkTheme, init = false) {
   if (isDarkTheme === false) {
     body.classList.remove('dark');
     body.setAttribute('data-bs-theme', 'light');
+    swapButtons('white', 'black');
     if (codeHlLight) {
       codeHlLight.disabled = false;
     }
@@ -39,6 +50,7 @@ function renderThemeVariation(isDarkTheme, init = false) {
   } else {
     body.classList.add('dark');
     body.setAttribute('data-bs-theme', 'dark');
+    swapButtons('white', 'black');
     if (codeHlLight) {
       codeHlLight.disabled = true;
     }
