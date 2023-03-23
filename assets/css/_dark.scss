@@ -1,77 +1,77 @@
 .dark {
   background: $dark-color-dark;
   color: $light-color-dark
-}
 
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-  color: $lightest-color-dark
-}
-
-.dark a {
-  color: $primary-color-dark
-
-  &:hover {
+  h1, h2, h3, h4, h5, h6 {
     color: $lightest-color-dark
   }
-}
 
-.dark code {
-  color: rgba($light-color-dark, .8)
-}
+  a {
+    color: $primary-color-dark
 
-.dark ::selection {
-  background: rgba($light-color-dark, .25)
-}
-.dark ::-moz-selection {
-  background: rgba($light-color-dark, .25)
-}
-
-.dark .tag {
-  background: rgba(255, 255, 255, .1)
-
-  &:hover {
-    background: rgba(255, 255, 255, .3)
-  }
-}
-
-.dark .app-header {
-  background: $darkest-color-dark
-}
-
-.dark .app-header-avatar {
-  border: .5rem solid $primary-color-dark
-}
-
-.dark .app-header-social {
-  color: $lightest-color-dark
-}
-
-.dark .app-header-title {
-  color: $lightest-color-dark
-}
-
-.dark .page-item {
-  &.active {
-    .dark .page-link {
-      color: $lightest-color-dark;
-      background: $primary-color-dark
+    &:hover {
+      color: $lightest-color-dark
     }
   }
-}
 
-.dark .post-title {
-  color: $lightest-color-dark
-}
-
-.dark .post-content {
-  & > pre,
-  .dark .highlight > pre,
-  .dark .highlight > div {
-    border-left: .4em solid rgba($primary-color-dark, .8)
+  code {
+    color: rgba($light-color-dark, .8)
   }
 
-  .dark blockquote {
-    border-left: .4em solid rgba($primary-color-dark, .8);
+  ::selection {
+    background: rgba($light-color-dark, .25)
+  }
+  ::-moz-selection {
+    background: rgba($light-color-dark, .25)
+  }
+
+  .tag {
+    background: rgba(255, 255, 255, .1)
+
+    &:hover {
+      background: rgba(255, 255, 255, .3)
+    }
+  }
+
+  .app-header {
     background: $darkest-color-dark
+  }
+
+  .app-header-avatar {
+    border: .5rem solid $primary-color-dark
+  }
+
+  .app-header-social {
+    color: $lightest-color-dark
+  }
+
+  .app-header-title {
+    color: $lightest-color-dark
+  }
+
+  .page-item {
+    &.active {
+      .page-link {
+        color: $lightest-color-dark;
+        background: $primary-color-dark
+      }
+    }
+  }
+
+  .post-title {
+    color: $lightest-color-dark
+  }
+
+  .post-content {
+    & > pre,
+    .highlight > pre,
+    .highlight > div {
+      border-left: .4em solid rgba($primary-color-dark, .8)
+    }
+
+    blockquote {
+      border-left: .4em solid rgba($primary-color-dark, .8);
+      background: $darkest-color-dark
+    }
   }
 }
