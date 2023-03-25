@@ -32,7 +32,7 @@
     <script src="{{ $js.RelPermalink }}" type="module"></script>
     <header class="app-header">
       <a href="{{ .Site.BaseURL }}"><img class="app-header-avatar" src="{{ .Site.Params.avatar | default "avatar.jpg" | relURL }}" alt="{{ .Site.Params.author | default "John Doe" }}" /></a>
-      <span class="app-header-title">{{ .Site.Title }}</span>
+      <span class="app-header-title">{{ .Site.Params.author }}</span>
       <p>{{ .Site.Params.description | safeHTML | default "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium." }}</p>
       <svg class="dcf-d-block dcf-h-8 dcf-w-8" focusable="false" height="3rem" width="3rem" viewBox="0 0 152 152">
       <defs>
