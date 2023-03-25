@@ -102,9 +102,14 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <script>
-    if (window.location.href != "{{ .Site.Home.Permalink }}") {
+function scrollPastHeader(e) {
+    if ($('html').scrollTop() == 0 && window.innerWidth < 940 && window.location.href != "{{ .Site.Home.Permalink }}") {
         $('html, body').animate({ scrollTop: $('.app-container').offset().top});
     }
+}
+window.addEventListener ?
+window.addEventListener("load", scrollPastHeader, false) :
+window.attachEvent && window.attachEvent("onload", scrollPastHeader);
 </script>
   </body>
 </html>
