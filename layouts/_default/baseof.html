@@ -25,6 +25,16 @@
       src="https://code.jquery.com/jquery-3.6.4.min.js"
       integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
       crossorigin="anonymous"></script>
+    <!-- prevent flashing on load when light/dark theme loads -->
+    <style type="text/css">
+      .hidden {display:none;}
+    </style>
+    <script type="text/javascript">
+      $('html').addClass('hidden');
+      $(document).ready(function() {
+        $('html').removeClass('hidden');
+       });  
+    </script>
   </head>
   <body data-bs-theme="dark" class="dark">
     {{ $js := resources.Get "js/themes.js" | js.Build (dict "format" "esm" "minify" true) }}
