@@ -118,6 +118,11 @@ function scrollPastHeader(e) {
     if ($('html').scrollTop() == 0 && window.innerWidth < 940 && window.location.href != "{{ .Site.Home.Permalink }}") {
         $('html, body').animate({ scrollTop: $('.app-container').offset().top});
     }
+    const frames = Array.from(document.getElementsByTagName('iframe'));
+    frames.forEach((f) => {
+        if (!f.src)
+            f.setAttribute('src', f.getAttribute('data-url'));
+    });
 }
 window.addEventListener ?
 window.addEventListener("load", scrollPastHeader, false) :
