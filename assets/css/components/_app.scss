@@ -44,6 +44,16 @@
   font-weight: bold;
 }
 
+.app-footer > div {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.app-footer-grants {
+  font-size: 0.5rem;
+}
+
 @media (min-width: 940px) {
   .app-header {
     position: fixed;
@@ -53,7 +63,7 @@
     min-height: 100vh;
   }
 
-  .app-container {
+  .app-container, .app-footer {
     max-width: 65rem;
     margin-left: 20rem;
   }
