@@ -58,7 +58,8 @@
 
 @media (min-width: 940px) {
   .app-header {
-    position: fixed;
+    position: sticky;
+    float: left;
     top: 0;
     left: 0;
     width: 20rem;
